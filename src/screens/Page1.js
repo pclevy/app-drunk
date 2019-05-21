@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { View, Button, Text } from 'react-native';
 
-//import SoundPlayer from 'react-native-sound-player';
+import Sound from 'react-native-sound';
 
 //import {StackNavigator} from '../index.js';
 export default class Page1 extends Component {
@@ -24,14 +24,33 @@ export default class Page1 extends Component {
   })
 }
  */
+
+Tocar () {
+  alert('3333333');
+  
+  const requireAudio = require('./sounds/red-alert.mp3');
+  const sound = new Sound(requireAudio, (error) => {
+  if (error) {
+    console.log('error', error);
+    return;
+  }
+  sound.play(() => sound.release());
+  });
+  
+};
+
+
   render() {
+
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      
         <Text>Home</Text>
         <Button 
           title="Tocar Alerta"
-          onPress={ () => { alert('red_alert.mp3'); this.props.navigation.navigate('About')} }
-          //onPress={async () => {await alert('red_alert.mp3'); await this.props.navigation.navigate('About')} }
+          //onPress={ () => { alert('red_alert.mp3'); this.props.navigation.navigate('About')} }
+          //onPress={async () => { this.Tocar(); await alert('red_alert.mp3'); await this.props.navigation.navigate('About')} }
+          onPress={async () => { this.Tocar(); }}
         />
       </View>
     )
