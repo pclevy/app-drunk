@@ -6,7 +6,7 @@ export default class Presentation extends Component {
   state = { 
     image1: require('../images/react-native-mini-logo.jpg'),
     image2: require('../images/drunk3.gif'),
-    image9: require('../images/FB_IMG_15509766774455263.jpg')
+    image9: {}
   };
 
   static navigationOptions = {

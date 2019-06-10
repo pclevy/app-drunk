@@ -12,33 +12,17 @@ export default class Page1 extends Component {
     headerRight:<View style={{flex:1, backgroundColor: 'black', height: 50}}><Text>HOME</Text></View>
   };
 
-
-/* componentDidMount() {
-  SoundPlayer.onFinishedPlaying((success: boolean) => { // success is true when the sound is played
-    console.log('finished playing', success)
-  })
-  SoundPlayer.onFinishedLoading(async (success: boolean) => {
-    console.log('finished loading', success)
-    // ready to `play()`, `getInfo()`, etc
-    console.log(await SoundPlayer.getInfo())
-  })
-}
- */
-
-Tocar () {
-  alert('3333333');
-  
-  const requireAudio = require('./sounds/red-alert.mp3');
-  const sound = new Sound(requireAudio, (error) => {
-  if (error) {
-    console.log('error', error);
-    return;
+  async Tocar() {
+    //await alert('3333333');
+    const requireAudio = require('./sounds/siren.mp3');
+    const sound = new Sound(requireAudio, (error) => {
+    if (error) {
+      console.log('error', error);
+      return;
+    }
+    sound.play(() => sound.release());
+    });
   }
-  sound.play(() => sound.release());
-  });
-  
-};
-
 
   render() {
 
@@ -48,9 +32,8 @@ Tocar () {
         <Text>Home</Text>
         <Button 
           title="Tocar Alerta"
-          //onPress={ () => { alert('red_alert.mp3'); this.props.navigation.navigate('About')} }
-          //onPress={async () => { this.Tocar(); await alert('red_alert.mp3'); await this.props.navigation.navigate('About')} }
-          onPress={async () => { this.Tocar(); }}
+          //onPress={ async() => { await this.Tocar(); }}
+          onPress={ async() => { await this.Tocar(); this.props.navigation.navigate('About')} }
         />
       </View>
     )
